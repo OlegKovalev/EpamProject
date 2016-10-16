@@ -2,13 +2,14 @@ package database.connectionpool;
 
 import org.apache.log4j.Logger;
 
-import javax.sql.PooledConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +24,7 @@ public class ConnectionPool {
 
     private int poolSize = Integer.parseInt(BUNDLE.getString("db.poolsize"));
     private BlockingQueue<PooledConnection> freeConnections;
-    private Set<PooledConnection> usedConnections;
+    private Set<Object> usedConnections;
 
     private static volatile ConnectionPool instance;
 
@@ -75,7 +76,7 @@ public class ConnectionPool {
         } catch (InterruptedException e) {
             throw new SQLException(e);
         }
-        return connection;
+        return (Connection) connection;
     }
 
     public void free(PooledConnection pooledConnection) {

@@ -1,11 +1,17 @@
 package database.dao.jdbc;
 
+import database.connectionpool.ConnectionPool;
+import org.apache.log4j.Logger;
+
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DataAccess {
+public abstract class DataAccess {
     private static final Logger LOG = Logger.getLogger(DataAccess.class);
 
     public static <T> T getEntity(Class<T> tClass, String sql) {
@@ -41,8 +47,7 @@ public class DataAccess {
 
     public static void execute(String sql) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             Statement statement = connection.createStatement();
-        ) {
+             Statement statement = connection.createStatement()) {
             statement.execute(sql);
         } catch (SQLException e) {
             LOG.error("", e);

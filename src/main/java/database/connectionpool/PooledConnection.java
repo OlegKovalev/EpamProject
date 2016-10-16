@@ -14,7 +14,7 @@ public class PooledConnection implements Connection {
 
     @Override
     public void close() throws SQLException {
-        ConnectionPool.getInstance().free((javax.sql.PooledConnection) this);
+        ConnectionPool.getInstance().free(this);
     }
 
     public void realClose() throws SQLException {
@@ -133,7 +133,7 @@ public class PooledConnection implements Connection {
 
     @Override
     public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
-        
+
     }
 
     @Override
@@ -225,7 +225,7 @@ public class PooledConnection implements Connection {
     public void setClientInfo(String name, String value) throws SQLClientInfoException {
         connection.setClientInfo(name, value);
     }
-    
+
     @Override
     public void setClientInfo(Properties properties) throws SQLClientInfoException {
         connection.setClientInfo(properties);
@@ -252,7 +252,7 @@ public class PooledConnection implements Connection {
     }
 
     public void setSchema(String schema) throws SQLException {
-        
+
     }
 
     public String getSchema() throws SQLException {
