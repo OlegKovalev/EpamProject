@@ -1,20 +1,19 @@
 package model;
 
 public class Mark {
-    
+
     private int id;
     private int lessonId;
-
     private int studentId;
-
     private int mark;
     private int day;
-    public Mark(int id, int lessonId, int studentId, int mark, int day) {
+
+    public Mark(int id, int lessonId, int studentId,int day, int mark) {
         this.id = id;
         this.lessonId = lessonId;
         this.studentId = studentId;
-        this.mark = mark;
         this.day = day;
+        this.mark = mark;
     }
 
     public int getId() {

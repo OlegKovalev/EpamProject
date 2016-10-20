@@ -1,13 +1,15 @@
 package model;
 
-public class Class {
-    
+public class SchoolClass {
+
     private int id;
     private int number;
-
     private String prefix;
 
-    public Class(int id, int number, String prefix) {
+    public SchoolClass() {
+    }
+
+    public SchoolClass(int id, int number, String prefix) {
         this.id = id;
         this.number = number;
         this.prefix = prefix;
@@ -23,5 +25,17 @@ public class Class {
 
     public String getPrefix() {
         return prefix;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }

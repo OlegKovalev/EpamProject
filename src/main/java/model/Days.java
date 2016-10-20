@@ -1,11 +1,10 @@
 package model;
 
 public class Days {
-    
+
     private int id;
     private int lessonId;
     private int classId;
-
     private int count;
 
     public Days(int id, int lessonId, int classId, int count) {

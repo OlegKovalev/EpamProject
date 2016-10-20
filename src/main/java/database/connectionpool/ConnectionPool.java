@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class ConnectionPool {
     public static final Logger LOG = Logger.getLogger(ConnectionPool.class);
 
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("resources.db");
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("connectionpool.db");
     private static final String URL = BUNDLE.getString("db.url");
     private static final String DRIVER = BUNDLE.getString("db.driver");
     private static final String PASSWORD = BUNDLE.getString("db.password");

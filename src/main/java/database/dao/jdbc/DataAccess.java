@@ -63,6 +63,7 @@ public abstract class DataAccess {
     }
 
     private static <T> void setField(Field field, T object, ResultSet resultSet) {
+        field.setAccessible(true);
         String name = field.getName();
         Class<?> type = field.getType();
         try {

@@ -4,7 +4,6 @@ public class Student {
     
     private int id;
     private int classId;
-
     private String fio;
 
     public Student(int id, int classId, String fio) {
