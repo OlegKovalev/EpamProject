@@ -1,11 +1,10 @@
 package model;
 
 public class Teacher {
-    
+
     private int id;
     private int userId;
     private int lessonId;
-
     private int classId;
 
     public Teacher(int id, int userId, int lessonId, int classId) {

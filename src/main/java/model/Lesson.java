@@ -1,9 +1,8 @@
 package model;
 
 public class Lesson {
-    
-    private int id;
 
+    private int id;
     private String name;
 
     public Lesson(int id, String name) {

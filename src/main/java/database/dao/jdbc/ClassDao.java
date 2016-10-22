@@ -18,9 +18,9 @@ public class ClassDao {
 
     public static SchoolClass getClassByNumberAndPrefix(int number, String prefix) {
         return DataAccess.getEntity(SchoolClass.class, SELECT_ALL + " WHERE number = " + number +
-        " AND prefix = '" + prefix + "'");
+                " AND prefix = '" + prefix + "'");
     }
-    
+
     public static void insertClass(SchoolClass newClass) {
         DataAccess.execute("INSERT INTO class (number, prefix) VALUES " +
                 "(" + newClass.getNumber() + ", '" + newClass.getPrefix() + "')");

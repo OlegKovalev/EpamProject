@@ -8,7 +8,7 @@ public class Mark {
     private int mark;
     private int day;
 
-    public Mark(int id, int lessonId, int studentId,int day, int mark) {
+    public Mark(int id, int lessonId, int studentId, int day, int mark) {
         this.id = id;
         this.lessonId = lessonId;
         this.studentId = studentId;
