@@ -39,7 +39,7 @@ public class ConnectionPool {
         }
         try {
             for (int i = 0; i < poolSize; i++) {
-                Connection connection =  DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 freeConnections.add(new PooledConnection(connection));
             }
         } catch (SQLException e) {
