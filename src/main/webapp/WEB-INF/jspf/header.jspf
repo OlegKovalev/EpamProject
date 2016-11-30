@@ -1,0 +1,42 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+
+<div>
+        <div class="auth">
+            <ul>
+                <c:choose>
+                    <c:when test="${sessionScope.user == null}">
+                        <li><a href="./login"><fmt:message bundle="${loc}" key="login.title"/></a></li>
+                        <li><a href="./registration"><fmt:message bundle="${loc}" key="reg.title"/></a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./login"><fmt:message bundle="${loc}" key="all.account"/></a></li>
+                        <li><a href="./logout"><fmt:message bundle="${loc}" key="all.logout"/></a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+        <div class="lang">
+            <ul>
+                <c:set var="ru" value="ru"/>
+                <c:choose>
+                    <c:when test="${cookie.language.value == 'en'}">
+                        <li><a href="./changelocale?lang=ru">Русский</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./changelocale?lang=en">English</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </div>
+
+<h1><fmt:message bundle="${loc}" key="all.header"/></h1>
+
+<div class="menu">
+    <ul>
+        <li><a href="./"><fmt:message bundle="${loc}" key="menu.home" /></a> </li>
+        <li><a href="./info"><fmt:message bundle="${loc}" key="all.exams" />, <fmt:message bundle="${loc}" key="all.plan" /></a></li>
+        <li><a href="./rules"><fmt:message bundle="${loc}" key="menu.rules" /></a></li>
+        <li><a href="./lists"><fmt:message bundle="${loc}" key="menu.lists" /></a></li>
+    </ul>
+</div>

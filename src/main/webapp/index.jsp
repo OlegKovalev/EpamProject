@@ -1,19 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" 
-    pageEncoding="utf-8"%> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd"> 
-<html> 
-<head> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-<title>MyJSP</title> 
-</head> 
-<body> 
-  <input type="hidden" name="command" value="forward" /> 
-  Enter login:<br/> 
-  <input type="text" name="login" value="" /><br/> 
-  Enter password:<br/> 
-  <input type="password" name="password" value="" /><br/> 
-  <input type="submit" value=" Отправить " /><br/> 
-  </form> 
-</body> 
-</html> 
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@include file="/WEB-INF/jspf/bundles.jspf" %>
+
+<fmt:message bundle="${loc}" key="all.header" var="title"/>
+<html>
+<head>
+    <title>${title}</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<%@include file="/WEB-INF/jspf/header.jspf" %>
+
+
+</body>
+</html>

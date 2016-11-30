@@ -6,14 +6,11 @@ public class SchoolClass {
     private int number;
     private String prefix;
 
-    public SchoolClass() {
-    }
-
-    public SchoolClass(int id, int number, String prefix) {
+    /*public SchoolClass(int id, int number, String prefix) {
         this.id = id;
         this.number = number;
         this.prefix = prefix;
-    }
+    }*/
 
     public int getId() {
         return id;

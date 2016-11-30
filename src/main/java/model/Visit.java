@@ -7,12 +7,32 @@ public class Visit {
     private int studentId;
     private int day;
     private String visit;
-
-    public Visit(int id, int lessonId, int studentId, int day, String visit) {
+    
+    /*public Visit(int id, int lessonId, int studentId, int day, String visit) {
         this.id = id;
         this.lessonId = lessonId;
         this.studentId = studentId;
         this.day = day;
+        this.visit = visit;
+    }*/
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLessonId(int lessonId) {
+        this.lessonId = lessonId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public void setVisit(String visit) {
         this.visit = visit;
     }
 

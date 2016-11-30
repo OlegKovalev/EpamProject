@@ -1,0 +1,2 @@
+<fmt:setLocale value="${cookie.language.value}"/>
+<fmt:setBundle basename="localization.content" var="loc"/>

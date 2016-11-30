@@ -5,13 +5,22 @@ public class User {
     private int id;
     private String login;
     private String pass;
-    private String fio;
+    private String fullName;
 
-    public User(int id, String login, String pass, String fio) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public void setLogin(String login) {
         this.login = login;
+    }
+
+    public void setPass(String pass) {
         this.pass = pass;
-        this.fio = fio;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public int getId() {
@@ -26,7 +35,7 @@ public class User {
         return pass;
     }
 
-    public String getFio() {
-        return fio;
+    public String getFullName() {
+        return fullName;
     }
 }
