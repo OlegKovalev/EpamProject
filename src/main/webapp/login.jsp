@@ -33,10 +33,7 @@
     </div>
     <c:if test="${not empty error}">
         </br>
-        <%--<div>--%>
-            <%--<a class="close" data-dismiss="alert" href="#">×</a><c:out value="${errorMsg}"/>--%>
-            <c:out value="${error}"/>
-        <%--</div>--%>
+        <span style="color: #ff0000;"><fmt:message bundle="${loc}" key = "${error}" /></span>
     </c:if>
 </form>
 </body>

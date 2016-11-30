@@ -24,13 +24,15 @@ public class LoadDropListServlet extends HttpServlet {
 
         List<SchoolClass> classList = ClassDao.getAllClasses();
         List<Lesson> lessonList = LessonDao.getAllLessons();
-
+        
+//TO DO: sorting fo arrays
+        
 //        request.getSession().setAttribute(DROP_LIST_CLASS_ATTRIBUTE, classList);
 //        request.getSession().setAttribute(DROP_LIST_SUBJECT_ATTRIBUTE, lessonList);
         request.setAttribute("drop_list_class", classList);
         request.setAttribute("drop_list_lesson", lessonList);
 
-        request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+        request.getRequestDispatcher("./main.jsp").forward(request, response);
 
     }
 

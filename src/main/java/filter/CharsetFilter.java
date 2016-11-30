@@ -1,27 +1,25 @@
 package filter;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 
+@WebFilter(filterName = "CharsetFilter", urlPatterns = "/*")
 public class CharsetFilter implements Filter {
-    private String encoding;
-    private ServletContext context;
 
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        encoding = filterConfig.getInitParameter("characterEncoding");
-        context = filterConfig.getServletContext();
     }
 
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setCharacterEncoding(encoding);
-        servletResponse.setCharacterEncoding(encoding);
-        context.log("Charset was set: " + encoding);
-        filterChain.doFilter(servletRequest, servletResponse);
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        chain.doFilter(request, response);
     }
 
+    @Override
     public void destroy() {
-        encoding = null;
-        context = null;
     }
 }

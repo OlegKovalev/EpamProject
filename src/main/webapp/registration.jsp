@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/WEB-INF/jspf/bundles.jspf" %>
@@ -23,6 +23,13 @@
                placeholder="<fmt:message bundle="${loc}" key="reg.login.label"/>"/>
     </div>
     <div>
+        <label for="fullname">
+            <fmt:message bundle="${loc}" key="form.fullname"/>:
+        </label>
+        <input required id="fullname" type="text" name="fullname"
+               placeholder="<fmt:message bundle="${loc}" key="reg.fullname.label"/>"/>
+    </div>
+    <div>
         <label for="password">
             <fmt:message bundle="${loc}" key="form.password"/>:
         </label>
@@ -36,17 +43,15 @@
         <input required id="repeat_password" type="password" name="repeat_password"
                placeholder="<fmt:message bundle="${loc}" key="reg.repeat.password.label"/>"/>
     </div>
-    <div>
-        <label for="fullname">
-            <fmt:message bundle="${loc}" key="form.fullname"/>:
-        </label>
-        <input required id="fullname" type="text" name="fullname"
-               placeholder="<fmt:message bundle="${loc}" key="reg.fullname.label"/>"/>
-    </div>
 
     <div>
         <input type="submit" value="${submit}"/>
     </div>
+
+    <c:if test="${not empty error}">
+        </br>
+        <span style="color: #ff0000;"><fmt:message bundle="${loc}" key="${error}"/></span>
+    </c:if>
 </form>
 </body>
 </html>

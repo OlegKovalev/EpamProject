@@ -8,14 +8,12 @@ public enum ErrorEnum {
     REPEAT_PASSWORD_ERROR("input.error.repeat_password"),
     FULLNAME_ERROR("input.error.fullname"),
     SUCCESS("input.error.success");
-    
-//    private LocaleManager localeManager = LocaleManager.getInstance();
+
+    private final String errorPath;
 
     ErrorEnum(String errorPath) {
         this.errorPath = errorPath;
     }
-
-    private final String errorPath;
 
     public String getErrorPath() {
         return errorPath;

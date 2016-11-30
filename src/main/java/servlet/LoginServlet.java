@@ -2,7 +2,6 @@ package servlet;
 
 import database.dao.jdbc.UserDao;
 import model.User;
-import org.apache.commons.logging.Log;
 import org.apache.log4j.Logger;
 import service.CheckInputValue;
 import service.ErrorEnum;
@@ -16,7 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static encrypt.Encryption.checkPassword;
-import static service.ErrorEnum.*;
+import static service.ErrorEnum.EMAIL_OR_PASSWORD_ERROR;
+import static service.ErrorEnum.SUCCESS;
 
 
 @WebServlet("/login")
@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         //Check user's input
-        LOG.info(email + "  " + password);
         ErrorEnum validationResult = CheckInputValue.validateLogin(email, password);
         if (validationResult != SUCCESS) {
             printError(validationResult, request, response);
@@ -60,7 +59,7 @@ public class LoginServlet extends HttpServlet {
         User user = UserDao.getUserByLogin(email);
         if (user != null && checkPassword(password, user.getPass())) {
             session.setAttribute("user", user);
-            LOG.info("User logged in: {" + user.getLogin() + "," + user.getFullName() + "}");
+            LOG.info("User logged in! " + user.getLogin() + "@" + user.getFullName());
 
             response.sendRedirect("./main.jsp");
         } else {
@@ -69,7 +68,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void printError(ErrorEnum error, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("error", error);
+        request.setAttribute("error", error.getErrorPath());
         LOG.error("Error in invalid! " + error);
 
         request.getRequestDispatcher("./login.jsp").forward(request, response);

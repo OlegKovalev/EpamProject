@@ -8,7 +8,7 @@ public class CheckInputValue {
    
     private static final EmailValidator emailValidator = EmailValidator.getInstance();
 
-    private static final String FULL_NAME_REGEX = "([А-ЯЁ][а-яё]+[\\-\\s]?){3,}";
+    private static final String FULL_NAME_REGEX = "([А-ЯЁA-Z][а-яёa-z]+[\\-\\s]?){3,}";
 
     public static ErrorEnum validateLogin(String email, String password) {
         
@@ -22,30 +22,24 @@ public class CheckInputValue {
     }
 
 
-    /*public static String validateRegistration(String email, String firstName, String lastName, String password, String repeatPassword) {
-        MessageProvider loginResult = validateLogin(email, password);
-        if (loginResult != VALID) {
-            return loginResult;
+    public static ErrorEnum validateRegistration(String email, String fullName, String password, String repeatPassword) {
+        
+        ErrorEnum validateLoginResult = validateLogin(email, password);
+        
+        if (validateLoginResult != SUCCESS) {
+            return validateLoginResult;
         }
 
-        if (!validateFullname(firstName)) {
-            return FIRSTNAME_INVALID_ERROR;
+        if (!validateFullname(fullName)) {
+            return FULLNAME_ERROR;
+        }
+        
+        if (!password.equals(repeatPassword)) {
+            return REPEAT_PASSWORD_ERROR;
         }
 
-        if (!validateFullname(lastName)) {
-            return LASTNAME_INVALID_ERROR;
-        }
-
-        if (!validatePassword(repeatPassword)) {
-            return PASSWORD_INVALID_ERROR;
-        }
-
-        if (!repeatPassword.equals(password)) {
-            return REPEAT_PASSWORD_INVALID_ERROR;
-        }
-
-        return VALID;
-    }*/
+        return SUCCESS;
+    }
 
 
     public static boolean validateEmail(String email) {

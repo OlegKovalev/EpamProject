@@ -20,22 +20,5 @@
             </taglib-location>
         </taglib>
     </jsp-config>
-
-    <filter>
-        <filter-name>CharsetFilter</filter-name>
-        <filter-class>filter.CharsetFilter</filter-class>
-        <init-param>
-            <param-name>characterEncoding</param-name>
-            <param-value>utf-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>CharsetFilter</filter-name>
-        <url-pattern>/registration</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>CharsetFilter</filter-name>
-        <url-pattern>/login</url-pattern>
-    </filter-mapping>
     
 </web-app>
