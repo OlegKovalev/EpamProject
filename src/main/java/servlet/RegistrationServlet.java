@@ -53,10 +53,10 @@ public class RegistrationServlet extends HttpServlet {
         user.setPass(encryptPassword(request.getParameter("password")));
         user.setFullName(request.getParameter("fullname"));
         UserDao.insertUser(user);
-        LOG.info("New user created! " + user.getLogin() + "@" + user.getFullName());
+        LOG.info("New user created! " + user.getLogin() + "&" + user.getFullName());
 
         session.setAttribute("user", user);
-        LOG.info("User logged in! " + user.getLogin() + "@" + user.getFullName());
+        LOG.info("User logged in! " + user.getLogin() + "&" + user.getFullName());
 
         //set role
         session.setAttribute("role", "parent");

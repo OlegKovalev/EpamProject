@@ -10,13 +10,13 @@ public class ChatDao {
 
     //not finished
     public static List<Chat> getAllMessagesForRecipient(int idRecipient) {
-        return DataAccess.getAllEntities(Chat.class, SELECT_ALL + " WHERE id_recipient = " + idRecipient);
+        return DataAccess.getAllEntities(Chat.class, SELECT_ALL + " WHERE recipient_id = " + idRecipient);
     }
 }
 
  /*   public static void insertMessage(Chat newMark) {
         DataAccess.execute("INSERT INTO mark (lesson_id, student_id, day, mark) VALUES " +
-                "(" + newMark.getLessonId() + "," + newMark.getStudentId() + "," + newMark.getDay() +
+                "(" + newMark.getLesson_id() + "," + newMark.getStudent_id() + "," + newMark.getDay() +
                 "," + newMark.getMark() + ")");
     }*/
 

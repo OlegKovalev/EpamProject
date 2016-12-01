@@ -12,18 +12,18 @@ public class TeacherDao {
         return DataAccess.getAllEntities(Teacher.class, SELECT_ALL);
     }
 
-    public static List<Teacher> getTeacherByUserId(int userId) {
-        return DataAccess.getAllEntities(Teacher.class, SELECT_ALL + " WHERE user_id = " + userId);
-    }
-
     public static Teacher getTeacherById(int id) {
         return DataAccess.getEntity(Teacher.class, SELECT_ALL + " WHERE id = " + id);
     }
 
+    public static List<Teacher> getTeacherByUserId(int userId) {
+        return DataAccess.getAllEntities(Teacher.class, SELECT_ALL + " WHERE user_id = " + userId);
+    }
+
     public static void insertTeacher(Teacher newTeacher) {
         DataAccess.execute("INSERT INTO teacher (user_id, lesson_id, class_id) VALUES " +
-                "(" + newTeacher.getUserId() + "," + newTeacher.getLessonId() + "," +
-                newTeacher.getClassId() + ")");
+                "(" + newTeacher.getUser_id() + "," + newTeacher.getLesson_id() + "," +
+                newTeacher.getClass_id() + ")");
     }
 
     public static Teacher getTeacherByLessonIdAndClassId(int lessonId, int classId) {

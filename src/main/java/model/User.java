@@ -38,4 +38,9 @@ public class User {
     public String getFullName() {
         return fullName;
     }
+    
+    @Override
+    public String toString(){
+        return login;
+    }
 }

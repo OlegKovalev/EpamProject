@@ -18,12 +18,12 @@ public class MarkDao {
 
     public static void insertMark(Mark newMark) {
         DataAccess.execute("INSERT INTO mark (lesson_id, student_id, day, mark) VALUES " +
-                "(" + newMark.getLessonId() + "," + newMark.getStudentId() + "," + newMark.getDay() +
+                "(" + newMark.getLesson_id() + "," + newMark.getStudent_id() + "," + newMark.getDay() +
                 "," + newMark.getMark() + ")");
     }
 
     public static void updateMark(Mark mark) {
-        DataAccess.execute("UPDATE mark SET mark = " + mark.getMark() + " WHERE lesson_id = " + mark.getLessonId() +
-                " AND student_id = " + mark.getStudentId() + " AND day = " + mark.getDay());
+        DataAccess.execute("UPDATE mark SET mark = " + mark.getMark() + " WHERE lesson_id = " + mark.getLesson_id() +
+                " AND student_id = " + mark.getStudent_id() + " AND day = " + mark.getDay());
     }
 }

@@ -18,7 +18,7 @@ public class VisitDao {
 
     public static void insertVisit(Visit newVisit) {
         DataAccess.execute("INSERT INTO visit (lesson_id, student_id, day, visit) VALUES " +
-                "(" + newVisit.getLessonId() + "," + newVisit.getStudentId() + "," + newVisit.getDay() +
+                "(" + newVisit.getLesson_id() + "," + newVisit.getStudent_id() + "," + newVisit.getDay() +
                 ",'" + newVisit.getVisit() + "')");
     }
 }

@@ -12,8 +12,8 @@ public class DaysDao {
     }
 
     public static void updateClass(Days days) {
-        DataAccess.execute("UPDATE days SET count = " + days.getCount() + " WHERE lesson_id = " + days.getLessonId() +
-                " AND class_id = " + days.getClassId());
+        DataAccess.execute("UPDATE days SET count = " + days.getCount() + " WHERE lesson_id = " + days.getLesson_id() +
+                " AND class_id = " + days.getClass_id());
     }
 }
 

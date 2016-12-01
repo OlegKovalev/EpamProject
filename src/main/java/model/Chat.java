@@ -5,27 +5,27 @@ import java.util.Date;
 public class Chat {
 
     private int id;
-    private int idSender;
-    private int idRecipient;
-    private Date date;
+    private int sender_id;
+    private int recipient_id;
 
-    /*public Chat(int id, int idSender, int idRecipient, Date date) {
-        this.id = id;
-        this.idSender = idSender;
-        this.idRecipient = idRecipient;
-        this.date = date;
-    }*/
+    private int message;
+
+    private Date date;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setIdSender(int idSender) {
-        this.idSender = idSender;
+    public void setSender_id(int sender_id) {
+        this.sender_id = sender_id;
     }
 
-    public void setIdRecipient(int idRecipient) {
-        this.idRecipient = idRecipient;
+    public void setRecipient_id(int recipient_id) {
+        this.recipient_id = recipient_id;
+    }
+
+    public void setMessage(int message) {
+        this.message = message;
     }
 
     public void setDate(Date date) {
@@ -36,12 +36,16 @@ public class Chat {
         return id;
     }
 
-    public int getIdSender() {
-        return idSender;
+    public int getSender_id() {
+        return sender_id;
     }
 
-    public int getIdRecipient() {
-        return idRecipient;
+    public int getRecipient_id() {
+        return recipient_id;
+    }
+
+    public int getMessage() {
+        return message;
     }
 
     public Date getDate() {

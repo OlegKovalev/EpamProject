@@ -1,5 +1,6 @@
 package servlet;
 
+import database.dao.jdbc.TeacherDao;
 import database.dao.jdbc.UserDao;
 import model.User;
 import org.apache.log4j.Logger;
@@ -59,7 +60,15 @@ public class LoginServlet extends HttpServlet {
         User user = UserDao.getUserByLogin(email);
         if (user != null && checkPassword(password, user.getPass())) {
             session.setAttribute("user", user);
-            LOG.info("User logged in! " + user.getLogin() + "@" + user.getFullName());
+            
+            //if 'user' contains in table 'teacher' in DB -> 'user' is a teacher
+            if (TeacherDao.getTeacherByUserId(user.getId()) != null) {
+                session.setAttribute("role", "teacher");
+            } else {
+                session.setAttribute("role", "parent");
+            }
+            
+            LOG.info("User logged in! " + user.getLogin() + "&" + user.getFullName() + "&" + session.getAttribute("role"));
 
             response.sendRedirect("./main.jsp");
         } else {

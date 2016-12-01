@@ -20,8 +20,8 @@ public class UserDao {
                 "('" + newUser.getLogin() + "','" + newUser.getPass() + "','" + newUser.getFullName() + "')");
     }
 
-    public static void updateUserPass(User user) {
+    /*public static void updateUserPass(User user) {
         DataAccess.execute("UPDATE user SET pass = " + user.getPass() + " WHERE login = " + user.getLogin() +
                 " AND full_name = " + user.getFullName());
-    }
+    }*/
 }

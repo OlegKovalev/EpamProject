@@ -47,7 +47,6 @@ public class ClassDaoTest {
     @Ignore
     @Test
     public void insertClass() throws Exception {
-//        SchoolClass schoolClass = new SchoolClass(1, 9, "Д");
         SchoolClass schoolClass = new SchoolClass();
         schoolClass.setId(1);
         schoolClass.setNumber(9);

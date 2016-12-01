@@ -3,36 +3,36 @@ package model;
 public class Student {
 
     private int id;
-    private int classId;
-    private String fio;
+    private int class_id;
+    private String fullName;
     
-    /*public Student(int id, int classId, String fio) {
+    /*public Student(int id, int class_id, String fullName) {
         this.id = id;
-        this.classId = classId;
-        this.fio = fio;
+        this.class_id = class_id;
+        this.fullName = fullName;
     }*/
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClass_id(int class_id) {
+        this.class_id = class_id;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getClassId() {
-        return classId;
+    public int getClass_id() {
+        return class_id;
     }
 
-    public String getFio() {
-        return fio;
+    public String getFullName() {
+        return fullName;
     }
 }

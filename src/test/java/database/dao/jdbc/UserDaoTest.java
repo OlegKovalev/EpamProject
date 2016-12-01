@@ -5,15 +5,12 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Oleg on 27.11.2016.
- */
 public class UserDaoTest {
-    
+
     UserDao userDao;
-    
+
     @Before
     public void setUp() throws Exception {
         userDao = new UserDao();
@@ -26,11 +23,14 @@ public class UserDaoTest {
 
     @Test
     public void getUserByLogin() throws Exception {
-
+        User userTeacher = userDao.getUserByLogin("teacher@mail.ru");
+        assertEquals(6, userTeacher.getId());
+        assertEquals("teacher@mail.ru", userTeacher.getLogin());
+        assertEquals("Самойлова Анна Владимировна", userTeacher.getFullName());
     }
 
-    @Test
     @Ignore
+    @Test
     public void insertUser() throws Exception {
         User user = new User();
         user.setLogin("test");

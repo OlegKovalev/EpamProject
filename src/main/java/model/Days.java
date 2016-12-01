@@ -3,14 +3,14 @@ package model;
 public class Days {
 
     private int id;
-    private int lessonId;
-    private int classId;
+    private int lesson_id;
+    private int class_id;
     private int count;
     
-   /* public Days(int id, int lessonId, int classId, int count) {
+   /* public Days(int id, int lesson_id, int class_id, int count) {
         this.id = id;
-        this.lessonId = lessonId;
-        this.classId = classId;
+        this.lesson_id = lesson_id;
+        this.class_id = class_id;
         this.count = count;
     }*/
 
@@ -18,12 +18,12 @@ public class Days {
         this.id = id;
     }
 
-    public void setLessonId(int lessonId) {
-        this.lessonId = lessonId;
+    public void setLesson_id(int lesson_id) {
+        this.lesson_id = lesson_id;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClass_id(int class_id) {
+        this.class_id = class_id;
     }
 
     public void setCount(int count) {
@@ -34,12 +34,12 @@ public class Days {
         return id;
     }
 
-    public int getLessonId() {
-        return lessonId;
+    public int getLesson_id() {
+        return lesson_id;
     }
 
-    public int getClassId() {
-        return classId;
+    public int getClass_id() {
+        return class_id;
     }
 
     public int getCount() {

@@ -3,46 +3,46 @@ package model;
 public class Teacher {
 
     private int id;
-    private int userId;
-    private int lessonId;
-    private int classId;
+    private int user_id;
+    private int lesson_id;
+    private int class_id;
     
-    /*public Teacher(int id, int userId, int lessonId, int classId) {
+    /*public Teacher(int id, int user_id, int lesson_id, int class_id) {
         this.id = id;
-        this.userId = userId;
-        this.lessonId = lessonId;
-        this.classId = classId;
+        this.user_id = user_id;
+        this.lesson_id = lesson_id;
+        this.class_id = class_id;
     }*/
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public void setLessonId(int lessonId) {
-        this.lessonId = lessonId;
+    public void setLesson_id(int lesson_id) {
+        this.lesson_id = lesson_id;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClass_id(int class_id) {
+        this.class_id = class_id;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public int getLessonId() {
-        return lessonId;
+    public int getLesson_id() {
+        return lesson_id;
     }
 
-    public int getClassId() {
-        return classId;
+    public int getClass_id() {
+        return class_id;
     }
 }
