@@ -30,10 +30,10 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("user") != null) {
-            response.sendRedirect("./main.jsp");
+            response.sendRedirect("./");
             return;
         }
-        request.getRequestDispatcher("./login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             
             LOG.info("User logged in! " + user.getLogin() + "&" + user.getFullName() + "&" + session.getAttribute("role"));
 
-            response.sendRedirect("./main.jsp");
+            response.sendRedirect("./load_drop_list");
         } else {
             printError(EMAIL_OR_PASSWORD_ERROR, request, response);
         }
@@ -80,6 +80,6 @@ public class LoginServlet extends HttpServlet {
         request.setAttribute("error", error.getErrorPath());
         LOG.error("Error in invalid! " + error);
 
-        request.getRequestDispatcher("./login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 }

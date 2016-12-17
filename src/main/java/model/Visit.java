@@ -1,20 +1,12 @@
 package model;
 
-public class Visit {
+public class Visit implements Comparable {
 
     private int id;
     private int lesson_id;
     private int student_id;
     private int day;
     private String visit;
-    
-    /*public Visit(int id, int lesson_id, int student_id, int day, String visit) {
-        this.id = id;
-        this.lesson_id = lesson_id;
-        this.student_id = student_id;
-        this.day = day;
-        this.visit = visit;
-    }*/
 
     public void setId(int id) {
         this.id = id;
@@ -54,5 +46,16 @@ public class Visit {
 
     public String getVisit() {
         return visit;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Visit visit = (Visit) o;
+
+        long result = id - visit.id;
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+        return 0;
     }
 }

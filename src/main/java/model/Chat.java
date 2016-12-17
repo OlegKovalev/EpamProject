@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Chat {
+public class Chat implements Comparable {
 
     private int id;
     private int sender_id;
@@ -50,5 +50,16 @@ public class Chat {
 
     public Date getDate() {
         return date;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Chat chat = (Chat) o;
+
+        long result = date.getTime() - chat.date.getTime();
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+        return 0;
     }
 }

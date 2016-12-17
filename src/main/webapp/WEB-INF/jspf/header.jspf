@@ -9,7 +9,7 @@
                         <li><a href="./registration"><fmt:message bundle="${loc}" key="reg.title"/></a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./login"><fmt:message bundle="${loc}" key="all.account"/></a></li>
+                        <li><a href="./load_drop_list"><fmt:message bundle="${loc}" key="menu.statement"/></a></li>
                         <li><a href="./logout"><fmt:message bundle="${loc}" key="all.logout"/></a></li>
                     </c:otherwise>
                 </c:choose>
@@ -34,9 +34,9 @@
 
 <div class="menu">
     <ul>
-        <li><a href="./"><fmt:message bundle="${loc}" key="menu.home" /></a> </li>
-        <li><a href="./info"><fmt:message bundle="${loc}" key="all.exams" />, <fmt:message bundle="${loc}" key="all.plan" /></a></li>
-        <li><a href="./rules"><fmt:message bundle="${loc}" key="menu.rules" /></a></li>
-        <li><a href="./lists"><fmt:message bundle="${loc}" key="menu.lists" /></a></li>
+        <%--<li><a href="./WEB-INF/main.jsp"><fmt:message bundle="${loc}" key="menu.home" /></a> </li>--%>
+        <%--<li><a href="./info"><fmt:message bundle="${loc}" key="all.exams" />, <fmt:message bundle="${loc}" key="all.plan" /></a></li>--%>
+        <%--<li><a href="./rules"><fmt:message bundle="${loc}" key="menu.rules" /></a></li>--%>
+        <%--<li><a href="./lists"><fmt:message bundle="${loc}" key="menu.lists" /></a></li>--%>
     </ul>
 </div>

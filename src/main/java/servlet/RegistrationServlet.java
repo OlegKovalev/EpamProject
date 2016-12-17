@@ -28,7 +28,7 @@ public class RegistrationServlet extends HttpServlet {
 
         HttpSession session = request.getSession(true);
         if (session != null && session.getAttribute("user") != null) {
-            response.sendRedirect("./main.jsp");
+            response.sendRedirect("./index.jsp");
             return;
         }
 
@@ -67,16 +67,16 @@ public class RegistrationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("user") != null) {
-            response.sendRedirect("./main.jsp");
+            response.sendRedirect("./index.jsp");
             return;
         }
-        request.getRequestDispatcher("./registration.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, response);
     }
 
     private void printError(ErrorEnum error, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("error", error.getErrorPath());
         LOG.error("Error in invalid! " + error);
 
-        request.getRequestDispatcher("./registration.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, response);
     }
 }

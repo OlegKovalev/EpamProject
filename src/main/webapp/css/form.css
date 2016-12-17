@@ -3,3 +3,7 @@ label {
     width: 150px;
     float: left;
 }
+
+select {
+    width: 150px;
+}

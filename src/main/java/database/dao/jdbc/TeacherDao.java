@@ -3,12 +3,13 @@ package database.dao.jdbc;
 import model.Teacher;
 
 import java.util.List;
+import java.util.Set;
 
 public class TeacherDao {
 
     public static final String SELECT_ALL = "SELECT * FROM teacher";
 
-    public static List<Teacher> getAllTeachers() {
+    public static Set<Teacher> getAllTeachers() {
         return DataAccess.getAllEntities(Teacher.class, SELECT_ALL);
     }
 
@@ -16,7 +17,7 @@ public class TeacherDao {
         return DataAccess.getEntity(Teacher.class, SELECT_ALL + " WHERE id = " + id);
     }
 
-    public static List<Teacher> getTeacherByUserId(int userId) {
+    public static Set<Teacher> getTeacherByUserId(int userId) {
         return DataAccess.getAllEntities(Teacher.class, SELECT_ALL + " WHERE user_id = " + userId);
     }
 

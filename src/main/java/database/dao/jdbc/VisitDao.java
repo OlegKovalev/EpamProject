@@ -5,12 +5,13 @@ import model.SchoolClass;
 import model.Visit;
 
 import java.util.List;
+import java.util.Set;
 
 public class VisitDao {
 
     public static final String SELECT_ALL = "SELECT * FROM visit";
 
-    public static List<Visit> getAllVisitsByLessonAndClass(Lesson lesson, SchoolClass schoolClass) {
+    public static Set<Visit> getAllVisitsByLessonAndClass(Lesson lesson, SchoolClass schoolClass) {
         return DataAccess.getAllEntities(Visit.class, SELECT_ALL + " WHERE student_id IN" +
                 "(SELECT id FROM student WHERE class_id = " + schoolClass.getId() + ") AND lesson_id = " +
                 lesson.getId());

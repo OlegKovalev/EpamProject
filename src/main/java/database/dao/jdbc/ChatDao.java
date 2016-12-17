@@ -3,13 +3,14 @@ package database.dao.jdbc;
 import model.Chat;
 
 import java.util.List;
+import java.util.Set;
 
 public class ChatDao {
 
     public static final String SELECT_ALL = "SELECT * FROM chat";
 
     //not finished
-    public static List<Chat> getAllMessagesForRecipient(int idRecipient) {
+    public static Set<Chat> getAllMessagesForRecipient(int idRecipient) {
         return DataAccess.getAllEntities(Chat.class, SELECT_ALL + " WHERE recipient_id = " + idRecipient);
     }
 }

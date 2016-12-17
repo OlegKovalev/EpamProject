@@ -1,22 +1,12 @@
 package model;
 
-public class Mark {
+public class Mark implements Comparable {
 
     private int id;
     private int lesson_id;
     private int student_id;
     private int day;
     private int mark;
-    
-/*
-    public Mark(int id, int lesson_id, int student_id, int day, int mark) {
-        this.id = id;
-        this.lesson_id = lesson_id;
-        this.student_id = student_id;
-        this.day = day;
-        this.mark = mark;
-    }
-*/
 
     public void setId(int id) {
         this.id = id;
@@ -56,5 +46,21 @@ public class Mark {
 
     public int getMark() {
         return mark;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Mark mark = (Mark) o;
+
+        long result = day - mark.getDay();
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+
+        result = id - mark.id;
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+        return 0;
     }
 }

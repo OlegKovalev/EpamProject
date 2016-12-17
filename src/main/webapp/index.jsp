@@ -12,6 +12,7 @@
     <title>${title}</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+<%--<li><a href="./main.jsp">page - main</a></li>--%>
 <body>
 
 <%@include file="/WEB-INF/jspf/header.jspf" %>

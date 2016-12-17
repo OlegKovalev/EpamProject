@@ -35,6 +35,7 @@
         </br>
         <span style="color: #ff0000;"><fmt:message bundle="${loc}" key = "${error}" /></span>
     </c:if>
+    
 </form>
 </body>
 </html>

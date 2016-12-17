@@ -1,18 +1,11 @@
 package model;
 
-public class Teacher {
+public class Teacher implements Comparable {
 
     private int id;
     private int user_id;
     private int lesson_id;
     private int class_id;
-    
-    /*public Teacher(int id, int user_id, int lesson_id, int class_id) {
-        this.id = id;
-        this.user_id = user_id;
-        this.lesson_id = lesson_id;
-        this.class_id = class_id;
-    }*/
 
     public void setId(int id) {
         this.id = id;
@@ -44,5 +37,16 @@ public class Teacher {
 
     public int getClass_id() {
         return class_id;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Teacher teacher = (Teacher) o;
+
+        long result = id - teacher.id;
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+        return 0;
     }
 }

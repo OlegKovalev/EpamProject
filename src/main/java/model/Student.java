@@ -1,16 +1,10 @@
 package model;
 
-public class Student {
+public class Student implements Comparable {
 
     private int id;
     private int class_id;
     private String fullName;
-    
-    /*public Student(int id, int class_id, String fullName) {
-        this.id = id;
-        this.class_id = class_id;
-        this.fullName = fullName;
-    }*/
 
     public void setId(int id) {
         this.id = id;
@@ -34,5 +28,21 @@ public class Student {
 
     public String getFullName() {
         return fullName;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Student student = (Student) o;
+
+        int result = fullName.compareTo(student.fullName);
+        if(result != 0) {
+            return result;
+        }
+
+        result = id - student.id;
+        if(result != 0) {
+            return result / Math.abs( result );
+        }
+        return 0;
     }
 }

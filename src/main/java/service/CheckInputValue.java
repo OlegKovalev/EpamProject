@@ -5,13 +5,13 @@ import org.apache.commons.validator.routines.EmailValidator;
 import static service.ErrorEnum.*;
 
 public class CheckInputValue {
-   
+
     private static final EmailValidator emailValidator = EmailValidator.getInstance();
 
     private static final String FULL_NAME_REGEX = "([А-ЯЁA-Z][а-яёa-z]+[\\-\\s]?){3,}";
 
     public static ErrorEnum validateLogin(String email, String password) {
-        
+
         if (!validateEmail(email)) {
             return EMAIL_ERROR;
         }
@@ -21,11 +21,10 @@ public class CheckInputValue {
         return SUCCESS;
     }
 
-
     public static ErrorEnum validateRegistration(String email, String fullName, String password, String repeatPassword) {
-        
+
         ErrorEnum validateLoginResult = validateLogin(email, password);
-        
+
         if (validateLoginResult != SUCCESS) {
             return validateLoginResult;
         }
@@ -33,7 +32,7 @@ public class CheckInputValue {
         if (!validateFullname(fullName)) {
             return FULLNAME_ERROR;
         }
-        
+
         if (!password.equals(repeatPassword)) {
             return REPEAT_PASSWORD_ERROR;
         }
@@ -41,6 +40,13 @@ public class CheckInputValue {
         return SUCCESS;
     }
 
+
+    public static ErrorEnum validateDropList(String schoolClass, String lesson) {
+        if (schoolClass == null ||schoolClass.equals("") || lesson == null || lesson.equals("")) {
+            return DROPLIST_ERROR;
+        }
+        return SUCCESS;
+    }
 
     public static boolean validateEmail(String email) {
         return emailValidator.isValid(email);

@@ -7,6 +7,8 @@ public enum ErrorEnum {
     PASSWORD_LENGTH_ERROR("input.error.password.length"),
     REPEAT_PASSWORD_ERROR("input.error.repeat_password"),
     FULLNAME_ERROR("input.error.fullname"),
+    DROPLIST_ERROR("input.error.droplist"),
+    DAY_NOT_EXIST("table.build.days_exist"),
     SUCCESS("input.error.success");
 
     private final String errorPath;

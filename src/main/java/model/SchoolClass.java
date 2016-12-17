@@ -1,16 +1,10 @@
 package model;
 
-public class SchoolClass {
+public class SchoolClass implements Comparable {
 
     private int id;
     private int number;
     private String prefix;
-
-    /*public SchoolClass(int id, int number, String prefix) {
-        this.id = id;
-        this.number = number;
-        this.prefix = prefix;
-    }*/
 
     public int getId() {
         return id;
@@ -34,5 +28,21 @@ public class SchoolClass {
 
     public void setPrefix(String prefix) {
         this.prefix = prefix;
+    }
+
+    @Override
+    public int compareTo(Object obj) {
+        SchoolClass entry = (SchoolClass) obj;
+
+        long result = number - entry.number;
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+
+        result = prefix.compareTo(entry.prefix);
+        if (result != 0) {
+            return (int) result;
+        }
+        return 0;
     }
 }

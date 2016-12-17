@@ -1,18 +1,11 @@
 package model;
 
-public class Days {
+public class Days implements Comparable {
 
     private int id;
     private int lesson_id;
     private int class_id;
     private int count;
-    
-   /* public Days(int id, int lesson_id, int class_id, int count) {
-        this.id = id;
-        this.lesson_id = lesson_id;
-        this.class_id = class_id;
-        this.count = count;
-    }*/
 
     public void setId(int id) {
         this.id = id;
@@ -44,5 +37,16 @@ public class Days {
 
     public int getCount() {
         return count;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Days days = (Days) o;
+
+        long result = id - days.id;
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+        return 0;
     }
 }

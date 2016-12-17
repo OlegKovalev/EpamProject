@@ -8,8 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public abstract class DataAccess {
     private static final Logger LOG = Logger.getLogger(DataAccess.class);
@@ -28,11 +28,11 @@ public abstract class DataAccess {
         return null;
     }
 
-    public static <T> List<T> getAllEntities(Class<T> tClass, String sql) {
+    public static <T> Set<T> getAllEntities(Class<T> tClass, String sql) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery(sql)) {
-                List<T> result = new ArrayList<>();
+                Set<T> result = new TreeSet<>();
                 while (resultSet.next()) {
                     T instance = getT(tClass, resultSet);
                     result.add(instance);
@@ -40,6 +40,7 @@ public abstract class DataAccess {
                 return result;
             }
         } catch (IllegalAccessException | InstantiationException | SQLException e) {
+            LOG.info(sql);
             LOG.error("", e);
         }
         return null;

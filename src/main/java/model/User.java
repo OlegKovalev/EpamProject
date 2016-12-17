@@ -1,6 +1,6 @@
 package model;
 
-public class User {
+public class User implements Comparable {
 
     private int id;
     private String login;
@@ -42,5 +42,16 @@ public class User {
     @Override
     public String toString(){
         return login;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        User user = (User) o;
+
+        long result = id - user.id;
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+        return 0;
     }
 }
