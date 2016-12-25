@@ -52,7 +52,12 @@ public class Visit implements Comparable {
     public int compareTo(Object o) {
         Visit visit = (Visit) o;
 
-        long result = id - visit.id;
+        long result = day - visit.getDay();
+        if (result != 0) {
+            return (int) (result / Math.abs(result));
+        }
+
+        result = id - visit.id;
         if (result != 0) {
             return (int) (result / Math.abs(result));
         }

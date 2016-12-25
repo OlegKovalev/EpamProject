@@ -12,7 +12,7 @@ public class MarkDao {
 
     public static final String SELECT_ALL = "SELECT * FROM mark";
 
-    public static Set<Mark> getMarkByLessonAndStudent(Lesson lesson, Student student) {
+    public static Set<Mark> getMarksByLessonAndStudent(Lesson lesson, Student student) {
         return DataAccess.getAllEntities(Mark.class, SELECT_ALL + " WHERE lesson_id = " + lesson.getId() + 
                 " AND student_id = " + student.getId());
     }

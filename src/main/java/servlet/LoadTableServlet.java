@@ -1,11 +1,9 @@
 package servlet;
 
 import database.dao.jdbc.*;
-import model.Days;
-import model.Lesson;
-import model.Mark;
-import model.Student;
+import model.*;
 import model.table.MarkTable;
+import model.table.VisitTable;
 import service.CheckInputValue;
 import service.ErrorEnum;
 import service.TableStatistics;
@@ -29,36 +27,37 @@ public class LoadTableServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        double averageMark;
         int daysCount, selectedClassId, selectedLessonId;
-        Set<Mark> studentMarks;
 
         Cookie[] cookies = request.getCookies();
-        List<MarkTable> markTableList = new ArrayList<>();
         String selectedClassInJsp = request.getParameter("selectedClassId");
         String selectedLessonInJsp = request.getParameter("selectedLessonId");
-//        System.out.println(selectedClassInJsp + " " + selectedLessonInJsp);
+        String selectedStatementTypeInJsp = request.getParameter("selectedStatementType");
 
-
-        if (selectedClassInJsp == null && selectedLessonInJsp == null) {
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("selectedClassId")) {
-                        selectedClassInJsp = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("selectedLessonId")) {
-                        selectedLessonInJsp = cookie.getValue();
-                    }
+//        save the table, when language is changed 
+        if (cookies != null && selectedClassInJsp == null && selectedLessonInJsp == null && selectedStatementTypeInJsp == null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("selectedClassId")) {
+                    selectedClassInJsp = cookie.getValue();
+                }
+                if (cookie.getName().equals("selectedLessonId")) {
+                    selectedLessonInJsp = cookie.getValue();
+                }
+                if (cookie.getName().equals("selectedStatementType")) {
+                    selectedStatementTypeInJsp = cookie.getValue();
                 }
             }
         } else {
             Cookie cookieClassId = new Cookie("selectedClassId", selectedClassInJsp);
             Cookie cookieLessonId = new Cookie("selectedLessonId", selectedLessonInJsp);
+            Cookie cookieStatementType = new Cookie("selectedStatementType", selectedStatementTypeInJsp);
             response.addCookie(cookieClassId);
             response.addCookie(cookieLessonId);
+            response.addCookie(cookieStatementType);
         }
+        System.out.println(selectedClassInJsp + " " + selectedLessonInJsp + " " + selectedStatementTypeInJsp);
 
-        ErrorEnum validationResult = CheckInputValue.validateDropList(selectedClassInJsp, selectedLessonInJsp);
+        ErrorEnum validationResult = CheckInputValue.validateDropList(selectedClassInJsp, selectedLessonInJsp, selectedStatementTypeInJsp);
         if (validationResult != SUCCESS) {
             printError(validationResult, request, response);
             return;
@@ -67,6 +66,7 @@ public class LoadTableServlet extends HttpServlet {
 //        default value for drop list
         request.setAttribute("selectedClassInDropList", ClassDao.getClassById(Integer.parseInt(selectedClassInJsp)));
         request.setAttribute("selectedLessonInDropList", LessonDao.getLessonById(Integer.parseInt(selectedLessonInJsp)));
+        request.setAttribute("selectedStatementTypeInDropList", selectedStatementTypeInJsp);
 
         selectedClassId = Integer.parseInt(selectedClassInJsp);
         selectedLessonId = Integer.parseInt(selectedLessonInJsp);
@@ -77,22 +77,41 @@ public class LoadTableServlet extends HttpServlet {
             printError(DAY_NOT_EXIST, request, response);
         }
         daysCount = day.getCount();
+        request.setAttribute("daysCount", daysCount);
 
         Set<Student> studentSet = StudentDao.getAllStudentsByClassId(selectedClassId);
         Lesson lesson = LessonDao.getLessonById(selectedLessonId);
 
-        for (Student student : studentSet) {
+        if (selectedStatementTypeInJsp.equals("Marks") || selectedStatementTypeInJsp.equals("Оценки")) {
+//              values for mark table
+            Set<Mark> studentMarks;
+            double averageMark;
+            List<MarkTable> markTableList = new ArrayList<>();
 
-            studentMarks = MarkDao.getMarkByLessonAndStudent(lesson, student);
-            averageMark = TableStatistics.getAverageMark(studentMarks);
+            for (Student student : studentSet) {
+                studentMarks = MarkDao.getMarksByLessonAndStudent(lesson, student);
+                averageMark = TableStatistics.getAverageMark(studentMarks);
 
-            markTableList.add(new MarkTable(student, studentMarks, averageMark));
+                markTableList.add(new MarkTable(student, studentMarks, averageMark));
+            }
+            request.setAttribute("markTable", markTableList);
+        } else {
+//              values for visit table
+            Set<Visit> studentVisits;
+            double averageVisit;
+            List<VisitTable> visitTableList = new ArrayList<>();
+
+
+            for (Student student : studentSet) {
+                studentVisits = VisitDao.getVisitsByLessonAndStudent(lesson, student);
+                averageVisit = TableStatistics.getAverageVisit(studentVisits);
+
+                visitTableList.add(new VisitTable(student, studentVisits, averageVisit));
+            }
+            request.setAttribute("visitTable", visitTableList);
         }
-        request.setAttribute("markTable", markTableList);
-        request.setAttribute("daysCount", daysCount);
 
         request.getRequestDispatcher("/load_drop_list").forward(request, response);
-//        request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

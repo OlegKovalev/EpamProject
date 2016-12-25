@@ -1,20 +1,18 @@
 package database.dao.jdbc;
 
 import model.Lesson;
-import model.SchoolClass;
+import model.Student;
 import model.Visit;
 
-import java.util.List;
 import java.util.Set;
 
 public class VisitDao {
 
     public static final String SELECT_ALL = "SELECT * FROM visit";
 
-    public static Set<Visit> getAllVisitsByLessonAndClass(Lesson lesson, SchoolClass schoolClass) {
-        return DataAccess.getAllEntities(Visit.class, SELECT_ALL + " WHERE student_id IN" +
-                "(SELECT id FROM student WHERE class_id = " + schoolClass.getId() + ") AND lesson_id = " +
-                lesson.getId());
+    public static Set<Visit> getVisitsByLessonAndStudent(Lesson lesson, Student student) {
+        return DataAccess.getAllEntities(Visit.class, SELECT_ALL + " WHERE lesson_id = " + lesson.getId() + 
+                " AND student_id = " + student.getId());
     }
 
     public static void insertVisit(Visit newVisit) {
