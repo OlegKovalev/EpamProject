@@ -55,7 +55,7 @@ public class LoadTableServlet extends HttpServlet {
             response.addCookie(cookieLessonId);
             response.addCookie(cookieStatementType);
         }
-        System.out.println(selectedClassInJsp + " " + selectedLessonInJsp + " " + selectedStatementTypeInJsp);
+//        System.out.println(selectedClassInJsp + " " + selectedLessonInJsp + " " + selectedStatementTypeInJsp);
 
         ErrorEnum validationResult = CheckInputValue.validateDropList(selectedClassInJsp, selectedLessonInJsp, selectedStatementTypeInJsp);
         if (validationResult != SUCCESS) {

@@ -13,8 +13,13 @@ public class MarkDao {
     public static final String SELECT_ALL = "SELECT * FROM mark";
 
     public static Set<Mark> getMarksByLessonAndStudent(Lesson lesson, Student student) {
-        return DataAccess.getAllEntities(Mark.class, SELECT_ALL + " WHERE lesson_id = " + lesson.getId() + 
+        return DataAccess.getAllEntities(Mark.class, SELECT_ALL + " WHERE lesson_id = " + lesson.getId() +
                 " AND student_id = " + student.getId());
+    }
+
+    public static Mark getMarkByLessonIdAndStudentIdAndDay(int lessonId, int studentId, int day) {
+        return DataAccess.getEntity(Mark.class, SELECT_ALL + " WHERE lesson_id = " + lessonId +
+                " AND student_id = " + studentId + " AND day = " + day);
     }
 
     public static void insertMark(Mark newMark) {
