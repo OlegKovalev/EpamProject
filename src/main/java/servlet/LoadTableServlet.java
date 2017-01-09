@@ -6,6 +6,7 @@ import model.table.MarkTable;
 import model.table.VisitTable;
 import service.CheckInputValue;
 import service.ErrorEnum;
+import service.ShowError;
 import service.TableStatistics;
 
 import javax.servlet.ServletException;
@@ -55,11 +56,10 @@ public class LoadTableServlet extends HttpServlet {
             response.addCookie(cookieLessonId);
             response.addCookie(cookieStatementType);
         }
-//        System.out.println(selectedClassInJsp + " " + selectedLessonInJsp + " " + selectedStatementTypeInJsp);
 
         ErrorEnum validationResult = CheckInputValue.validateDropList(selectedClassInJsp, selectedLessonInJsp, selectedStatementTypeInJsp);
         if (validationResult != SUCCESS) {
-            printError(validationResult, request, response);
+            ShowError.printError(validationResult, request, response);
             return;
         }
 
@@ -74,7 +74,7 @@ public class LoadTableServlet extends HttpServlet {
 //       get the number of days by selected Class and Lesson for build columns in table
         Days day = DaysDao.getDaysByLessonIdAndClassId(selectedLessonId, selectedClassId);
         if (day == null) {
-            printError(DAY_NOT_EXIST, request, response);
+            ShowError.printError(DAY_NOT_EXIST, request, response);
         }
         daysCount = day.getCount();
         request.setAttribute("daysCount", daysCount);
@@ -83,7 +83,7 @@ public class LoadTableServlet extends HttpServlet {
         Lesson lesson = LessonDao.getLessonById(selectedLessonId);
 
         if (selectedStatementTypeInJsp.equals("Marks") || selectedStatementTypeInJsp.equals("Оценки")) {
-//              values for mark table
+//           values for mark table
             Set<Mark> studentMarks;
             double averageMark;
             List<MarkTable> markTableList = new ArrayList<>();
@@ -110,16 +110,10 @@ public class LoadTableServlet extends HttpServlet {
             }
             request.setAttribute("visitTable", visitTableList);
         }
-
         request.getRequestDispatcher("/load_drop_list").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
-    }
-
-    private void printError(ErrorEnum error, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("error", error.getErrorPath());
-        request.getRequestDispatcher("/load_drop_list").forward(request, response);
     }
 }

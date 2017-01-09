@@ -41,8 +41,8 @@ public class CheckInputValue {
     }
 
 
-    public static ErrorEnum validateDropList(String schoolClass, String lesson, String statement) {
-        if (schoolClass == null || schoolClass.equals("") || lesson == null || lesson.equals("") || statement == null || statement.equals("")) {
+    public static ErrorEnum validateDropList(String firstDL, String secondDL, String thirdDL) {
+        if (firstDL == null || firstDL.equals("") || secondDL == null || secondDL.equals("") || thirdDL == null || thirdDL.equals("")) {
             return DROPLIST_ERROR;
         }
         return SUCCESS;
