@@ -1,0 +1,9 @@
+p {
+    text-align: center;
+    margin: 50px;
+}
+
+img {
+    max-width: 600px;
+    max-height: 270px;
+}

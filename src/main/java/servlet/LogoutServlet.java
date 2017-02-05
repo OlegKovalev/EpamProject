@@ -1,6 +1,7 @@
 package servlet;
 
 import org.apache.log4j.Logger;
+import service.DeleteCookies;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,11 +21,12 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
+        DeleteCookies.eraseCookie(request, response);
+
         if (session != null) {
             LOG.info("User logged out! " +  session.getAttribute("user").toString());
             session.invalidate();
         }
-
         response.sendRedirect("./index.jsp");
     }
 

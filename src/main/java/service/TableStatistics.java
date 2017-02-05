@@ -20,7 +20,7 @@ public class TableStatistics {
         return sum;
     }
 
-    public static double getAverageVisit(Set<Visit> visitSet) {
+    public static int getAverageVisit(Set<Visit> visitSet) {
         int sum = 0;
 
         if (!visitSet.isEmpty()) {
@@ -30,7 +30,7 @@ public class TableStatistics {
                 }
             }
             int avg = (int) Math.round((double) sum / visitSet.size() * 100);
-            return (double) avg / 100;
+            return  avg;
         }
         return sum;
     }

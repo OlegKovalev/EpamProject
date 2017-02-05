@@ -2,56 +2,60 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/WEB-INF/jspf/bundles.jspf" %>
-<fmt:message bundle="${loc}" key="reg.title" var="title"/>
 <fmt:message bundle="${loc}" key="reg.submit" var="submit"/>
 <html>
 <head>
-    <title>${title}</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/form.css"/>
+    <title><fmt:message bundle="${loc}" key="reg.header"/></title>
+    <%@include file="/WEB-INF/jspf/head.jspf" %>
 </head>
 <body>
-<%@include file="/WEB-INF/jspf/header.jspf" %>
-<h2>${title}</h2>
+<div class="container">
+    <%@include file="/WEB-INF/jspf/header.jspf" %>
+    <form class="form-signin" role="form" method="POST" action="./registration">
+        <h2 class="form-signin-heading"><fmt:message bundle="${loc}" key="reg.title"/></h2>
+        <div>
+            <label for="login">
+                <fmt:message bundle="${loc}" key="reg_login.login.label"/>:
+            </label>
+            <input type="email" class="form-control" required id="login" name="login"
+                   placeholder="<fmt:message bundle="${loc}" key="reg_login.login.input"/>"/>
+        </div>
+        <div>
+            <label for="fullname">
+                <fmt:message bundle="${loc}" key="reg.fullname.label"/>:
+            </label>
+            <input type="text" class="form-control" required id="fullname" name="fullname"
+                   placeholder="<fmt:message bundle="${loc}" key="reg.fullname.input"/>"/>
+        </div>
+        <div>
+            <label for="password">
+                <fmt:message bundle="${loc}" key="reg_login.password.label"/>:
+            </label>
+            <input type="password" class="form-control" required id="password" name="password"
+                   placeholder="<fmt:message bundle="${loc}" key="reg_login.password.input"/>"/>
+        </div>
+        <div>
+            <label for="repeat_password">
+                <fmt:message bundle="${loc}" key="reg.repeat_password.label"/>:
+            </label>
+            <input type="password" class="form-control" required id="repeat_password" name="repeat_password"
+                   placeholder="<fmt:message bundle="${loc}" key="reg.repeat_password.input"/>"/>
+        </div>
 
-<form method="POST" action="./registration">
-    <div>
-        <label for="login">
-            <fmt:message bundle="${loc}" key="form.login"/>:
-        </label>
-        <input required id="login" type="text" name="login"
-               placeholder="<fmt:message bundle="${loc}" key="reg.login.label"/>"/>
-    </div>
-    <div>
-        <label for="fullname">
-            <fmt:message bundle="${loc}" key="form.fullname"/>:
-        </label>
-        <input required id="fullname" type="text" name="fullname"
-               placeholder="<fmt:message bundle="${loc}" key="reg.fullname.label"/>"/>
-    </div>
-    <div>
-        <label for="password">
-            <fmt:message bundle="${loc}" key="form.password"/>:
-        </label>
-        <input required id="password" type="password" name="password"
-               placeholder="<fmt:message bundle="${loc}" key="reg.password.label"/>"/>
-    </div>
-    <div>
-        <label for="repeat_password">
-            <fmt:message bundle="${loc}" key="reg.repeat.password.label"/>:
-        </label>
-        <input required id="repeat_password" type="password" name="repeat_password"
-               placeholder="<fmt:message bundle="${loc}" key="reg.repeat.password.label"/>"/>
-    </div>
+        <div>
+            <input class="btn btn-lg btn btn-success btn-block" type="submit"
+                   value="<fmt:message bundle="${loc}" key="reg.submit"/>"/>
+        </div>
 
+        <div style="text-align: center">
+            <c:if test="${not empty error}">
+                <span style="color: #ff0000; text-align: center"><fmt:message bundle="${loc}" key="${error}"/></span>
+            </c:if>
+        </div>
+    </form>
     <div>
-        <input type="submit" value="${submit}"/>
+        <%@include file="/WEB-INF/jspf/footer.jspf" %>
     </div>
-
-    <c:if test="${not empty error}">
-        </br>
-        <span style="color: #ff0000;"><fmt:message bundle="${loc}" key="${error}"/></span>
-    </c:if>
-</form>
+</div>
 </body>
 </html>

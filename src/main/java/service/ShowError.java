@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class ShowError {
     
-    public static void printError(ErrorEnum error, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void printError(ErrorEnum error, String objectPath, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("error", error.getErrorPath());
-        request.getRequestDispatcher("/load_table").forward(request, response);
+        request.getRequestDispatcher(objectPath).forward(request, response);
     }
 }

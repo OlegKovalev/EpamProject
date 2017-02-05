@@ -16,7 +16,7 @@ public class UserDao {
     }
 
     public static void insertUser(User newUser) {
-        DataAccess.execute("INSERT INTO user (login, pass, full_name) VALUES " +
+        DataAccess.execute("INSERT INTO user (login, pass, fullName) VALUES " +
                 "('" + newUser.getLogin() + "','" + newUser.getPass() + "','" + newUser.getFullName() + "')");
     }
 

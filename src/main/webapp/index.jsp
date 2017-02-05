@@ -2,17 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@include file="/WEB-INF/jspf/bundles.jspf" %>
-
-<%--<fmt:message bundle="${loc}" key="all.header" var="title"/>--%>
+<fmt:message bundle="${loc}" key="all.header" var="title"/>
 <html>
 <head>
     <title><fmt:message bundle="${loc}" key="all.header"/></title>
-    <link rel="stylesheet" href="./css/style.css">
+    <%@include file="/WEB-INF/jspf/head.jspf" %>
 </head>
 <body>
-<%@include file="/WEB-INF/jspf/header.jspf" %>
+<div class="container">
+    <%@include file="/WEB-INF/jspf/header.jspf" %>
+    <p class="welcome"><img src="media/welcome.jpg" alt="Welcome!"></p>
+    <div>
+        <%@include file="/WEB-INF/jspf/footer.jspf" %>
+    </div>
+</div>
 </body>
 </html>

@@ -9,9 +9,9 @@ public class VisitTable {
    
     private Student student;
     private Set<Visit> visits;
-    private double averageVisit;
+    private int averageVisit;
 
-    public VisitTable(Student student, Set<Visit> marks, double averageVisit) {
+    public VisitTable(Student student, Set<Visit> marks, int averageVisit) {
         this.student = student;
         this.visits = marks;
         this.averageVisit = averageVisit;
@@ -33,11 +33,11 @@ public class VisitTable {
         this.visits = marks;
     }
 
-    public double getAverageVisit() {
+    public int getAverageVisit() {
         return averageVisit;
     }
 
-    public void setAverageVisit(double averageVisit) {
+    public void setAverageVisit(int averageVisit) {
         this.averageVisit = averageVisit;
     }
 }

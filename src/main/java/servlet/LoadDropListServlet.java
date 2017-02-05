@@ -16,13 +16,11 @@ import java.util.Set;
 
 @WebServlet("/load_drop_list")
 public class LoadDropListServlet extends HttpServlet {
-    //сюда залетаем через get
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Set<SchoolClass> classList = ClassDao.getAllClasses();
         Set<Lesson> lessonList = LessonDao.getAllLessons();
         
-//TO DO: sorting fo arrays
         request.setAttribute("drop_list_class", classList);
         request.setAttribute("drop_list_lesson", lessonList);
 
@@ -32,6 +30,4 @@ public class LoadDropListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-    //загружаем выпадашки
-    //переходим на main.jsp
 }

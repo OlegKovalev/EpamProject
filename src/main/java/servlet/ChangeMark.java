@@ -30,7 +30,7 @@ public class ChangeMark extends HttpServlet {
 
         ErrorEnum validationResult = CheckInputValue.validateDropList(request.getParameter("selectedStudent"), request.getParameter("selectedDay"), request.getParameter("selectedMark"));
         if (validationResult != SUCCESS) {
-            ShowError.printError(validationResult, request, response);
+            ShowError.printError(validationResult, "/load_table", request, response);
             return;
         }
         
@@ -40,7 +40,7 @@ public class ChangeMark extends HttpServlet {
 
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("selectedLessonId")) {
+                if (cookie.getName().equals("selectedLessonId") && !cookie.getValue().equals("")) {
                     currentLesson = Integer.parseInt(cookie.getValue());
                 }
             }

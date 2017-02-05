@@ -5,7 +5,9 @@ import database.dao.jdbc.UserDao;
 import model.User;
 import org.apache.log4j.Logger;
 import service.CheckInputValue;
+import service.DeleteCookies;
 import service.ErrorEnum;
+import service.ShowError;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,18 +51,19 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("login");
         String password = request.getParameter("password");
 
-        //Check user's input
+        //check user's input
         ErrorEnum validationResult = CheckInputValue.validateLogin(email, password);
         if (validationResult != SUCCESS) {
-            printError(validationResult, request, response);
+            ShowError.printError(validationResult, "/WEB-INF/login.jsp", request, response);
             return;
         }
 
-        //Authorize the user
+        //authorize the user
         User user = UserDao.getUserByLogin(email);
         if (user != null && checkPassword(password, user.getPass())) {
             session.setAttribute("user", user);
-            
+
+            //set role to be able to change statement
             //if 'user' contains in table 'teacher' in DB -> 'user' is a teacher
             if (TeacherDao.getTeacherByUserId(user.getId()) != null) {
                 session.setAttribute("role", "teacher");
@@ -68,18 +71,14 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("role", "parent");
             }
             
-            LOG.info("User logged in! " + user.getLogin() + "&" + user.getFullName() + "&" + session.getAttribute("role"));
+            LOG.info("User logged in! " + user.getLogin() + "&" + session.getAttribute("role"));
+
+            DeleteCookies.eraseCookie(request, response);
 
             response.sendRedirect("./load_drop_list");
         } else {
-            printError(EMAIL_OR_PASSWORD_ERROR, request, response);
+            ShowError.printError(EMAIL_OR_PASSWORD_ERROR, "/WEB-INF/login.jsp", request, response);
+            return;
         }
-    }
-
-    private void printError(ErrorEnum error, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("error", error.getErrorPath());
-        LOG.error("Error in invalid! " + error);
-
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 }

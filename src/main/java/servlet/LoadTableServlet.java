@@ -29,7 +29,7 @@ public class LoadTableServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int daysCount, selectedClassId, selectedLessonId;
-
+        
         Cookie[] cookies = request.getCookies();
         String selectedClassInJsp = request.getParameter("selectedClassId");
         String selectedLessonInJsp = request.getParameter("selectedLessonId");
@@ -38,17 +38,22 @@ public class LoadTableServlet extends HttpServlet {
 //        save the table, when language is changed 
         if (cookies != null && selectedClassInJsp == null && selectedLessonInJsp == null && selectedStatementTypeInJsp == null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("selectedClassId")) {
+                if (cookie.getName().equals("selectedClassId") && !cookie.getValue().equals("")) {
                     selectedClassInJsp = cookie.getValue();
                 }
-                if (cookie.getName().equals("selectedLessonId")) {
+                if (cookie.getName().equals("selectedLessonId") && !cookie.getValue().equals("")) {
                     selectedLessonInJsp = cookie.getValue();
                 }
-                if (cookie.getName().equals("selectedStatementType")) {
+                if (cookie.getName().equals("selectedStatementType") && !cookie.getValue().equals("")) {
                     selectedStatementTypeInJsp = cookie.getValue();
                 }
             }
         } else {
+            ErrorEnum validationResult = CheckInputValue.validateDropList(selectedClassInJsp, selectedLessonInJsp, selectedStatementTypeInJsp);
+            if (validationResult != SUCCESS) {
+                ShowError.printError(validationResult, "/load_drop_list", request, response);
+                return;
+            }
             Cookie cookieClassId = new Cookie("selectedClassId", selectedClassInJsp);
             Cookie cookieLessonId = new Cookie("selectedLessonId", selectedLessonInJsp);
             Cookie cookieStatementType = new Cookie("selectedStatementType", selectedStatementTypeInJsp);
@@ -59,7 +64,7 @@ public class LoadTableServlet extends HttpServlet {
 
         ErrorEnum validationResult = CheckInputValue.validateDropList(selectedClassInJsp, selectedLessonInJsp, selectedStatementTypeInJsp);
         if (validationResult != SUCCESS) {
-            ShowError.printError(validationResult, request, response);
+            ShowError.printError(validationResult, "/load_drop_list", request, response);
             return;
         }
 
@@ -74,7 +79,8 @@ public class LoadTableServlet extends HttpServlet {
 //       get the number of days by selected Class and Lesson for build columns in table
         Days day = DaysDao.getDaysByLessonIdAndClassId(selectedLessonId, selectedClassId);
         if (day == null) {
-            ShowError.printError(DAY_NOT_EXIST, request, response);
+            ShowError.printError(DAY_NOT_EXIST, "/load_drop_list", request, response);
+            return;
         }
         daysCount = day.getCount();
         request.setAttribute("daysCount", daysCount);
@@ -96,9 +102,9 @@ public class LoadTableServlet extends HttpServlet {
             }
             request.setAttribute("markTable", markTableList);
         } else {
-//              values for visit table
+//            values for visit table
             Set<Visit> studentVisits;
-            double averageVisit;
+            int averageVisit;
             List<VisitTable> visitTableList = new ArrayList<>();
 
 
