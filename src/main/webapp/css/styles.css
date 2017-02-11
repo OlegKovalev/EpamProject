@@ -31,6 +31,10 @@
     font-size: 16px;
 }
 
+.table {
+    margin-bottom: 10px!important;
+}
+
 .table th {
     padding: 2px;
     text-align: center;
@@ -53,13 +57,13 @@
     text-align: center;
 }
 
-.error {
+.error-main {
     padding: 2px;
     margin: 0 120px;
 }
 
 
-/*singing*/
+/*signin*/
 .form-signin {
     max-width: 330px;
     padding: 10px;
@@ -92,6 +96,13 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.error-signin {
+    padding: 2px;
+    margin-top: 5px;
+    text-align: center;
+}
+
 
 
 /*footer*/

@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 
             //set role to be able to change statement
             //if 'user' contains in table 'teacher' in DB -> 'user' is a teacher
-            if (TeacherDao.getTeacherByUserId(user.getId()) != null) {
+            if (TeacherDao.getTeacherByUserId(user.getId()).size() != 0) {
                 session.setAttribute("role", "teacher");
             } else {
                 session.setAttribute("role", "parent");

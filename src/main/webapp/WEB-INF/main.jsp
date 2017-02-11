@@ -24,7 +24,8 @@
                 <c:choose>
                     <c:when test="${not empty selectedClassInDropList}">
                         <option selected hidden
-                                value="${selectedClassInDropList.id}">${selectedClassInDropList.number}${selectedClassInDropList.prefix}</option>
+                                value="${selectedClassInDropList.id}">${selectedClassInDropList.number}
+                                ${selectedClassInDropList.prefix}</option>
                     </c:when>
                     <c:otherwise>
                         <option selected hidden disabled><fmt:message bundle="${loc}"
@@ -79,7 +80,7 @@
 
         <%--error message, if the user hasn't selected items from the drop list--%>
         <c:if test="${not empty error}">
-            <p class="alert alert-danger error"><fmt:message bundle="${loc}" key="${error}"/></p>
+            <p class="alert alert-danger error-main"><fmt:message bundle="${loc}" key="${error}"/></p>
         </c:if>
     </form>
 
@@ -115,7 +116,6 @@
                 </tr>
             </c:forEach>
         </table>
-        <%--<br/> Заменить этот бр на нормальные отступы--%>
 
         <%--change marks--%>
         <form class="form-droplist" method="POST" action="./change_mark">
@@ -148,7 +148,7 @@
                     </select>
                 </div>
                 <div style="vertical-align: top;">
-                    <p><input class="btn btn-md btn-success" style="line-height: 1.43;" type="submit"
+                    <p><input class="btn btn-md btn-success" style="line-height: 1.43;" type="submit" 
                               value="${submit}"></p>
                 </div>
             </c:if>
@@ -187,7 +187,6 @@
                 </tr>
             </c:forEach>
         </table>
-        <%--<br/>заменить--%>
 
         <%--change visits--%>
         <form class="form-droplist" method="POST" action="./change_visit">

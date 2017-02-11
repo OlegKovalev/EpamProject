@@ -2,7 +2,6 @@ package database.dao.jdbc;
 
 import model.Teacher;
 
-import java.util.List;
 import java.util.Set;
 
 public class TeacherDao {

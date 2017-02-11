@@ -47,11 +47,9 @@
                    value="<fmt:message bundle="${loc}" key="reg.submit"/>"/>
         </div>
 
-        <div style="text-align: center">
-            <c:if test="${not empty error}">
-                <span style="color: #ff0000; text-align: center"><fmt:message bundle="${loc}" key="${error}"/></span>
-            </c:if>
-        </div>
+        <c:if test="${not empty error}">
+            <p class="alert alert-danger error-signin"><fmt:message bundle="${loc}" key="${error}"/></p>
+        </c:if>
     </form>
     <div>
         <%@include file="/WEB-INF/jspf/footer.jspf" %>

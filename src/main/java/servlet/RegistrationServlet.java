@@ -5,6 +5,7 @@ import database.dao.jdbc.UserDao;
 import model.User;
 import org.apache.log4j.Logger;
 import service.CheckInputValue;
+import service.DeleteCookies;
 import service.ErrorEnum;
 import service.ShowError;
 
@@ -61,6 +62,9 @@ public class RegistrationServlet extends HttpServlet {
 
         //set role to be able to change statement
         session.setAttribute("role", "parent");
+        
+        DeleteCookies.eraseCookie(request, response);
+
         response.sendRedirect("./load_drop_list");
     }
 
