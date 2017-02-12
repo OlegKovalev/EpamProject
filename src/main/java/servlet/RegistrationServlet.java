@@ -58,9 +58,9 @@ public class RegistrationServlet extends HttpServlet {
         LOG.info("New user created! " + user.getLogin() + "&" + user.getFullName());
 
         session.setAttribute("user", user);
-        LOG.info("User logged in! " + user.getLogin() + "&" + user.getFullName());
+        LOG.info("User logged in! " + user.getLogin());
 
-        //set role to be able to change statement
+//        set role to be able to change statement
         session.setAttribute("role", "parent");
         
         DeleteCookies.eraseCookie(request, response);

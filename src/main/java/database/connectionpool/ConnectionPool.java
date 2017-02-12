@@ -14,7 +14,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class ConnectionPool {
-    public static final Logger LOG = Logger.getLogger(ConnectionPool.class);
+    private static final Logger LOG = Logger.getLogger(ConnectionPool.class);
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("connectionpool.db");
     private static final String URL = BUNDLE.getString("db.url");
@@ -22,13 +22,13 @@ public class ConnectionPool {
     private static final String PASSWORD = BUNDLE.getString("db.password");
     private static final String USERNAME = BUNDLE.getString("db.username");
 
-    private int poolSize = Integer.parseInt(BUNDLE.getString("db.poolsize"));
     private BlockingQueue<PooledConnection> freeConnections;
     private Set<Object> usedConnections;
 
     private static volatile ConnectionPool instance;
 
-    ConnectionPool() {
+    private ConnectionPool() {
+        int poolSize = Integer.parseInt(BUNDLE.getString("db.poolsize"));
         freeConnections = new ArrayBlockingQueue<>(poolSize);
         usedConnections = Collections.synchronizedSet(new HashSet<>(poolSize));
         try {
@@ -62,7 +62,7 @@ public class ConnectionPool {
     }
 
     public Connection getConnection() throws SQLException {
-        PooledConnection connection = null;
+        PooledConnection connection;
         try {
             connection = freeConnections.poll(1, TimeUnit.SECONDS);
             if (connection == null) {
@@ -76,10 +76,10 @@ public class ConnectionPool {
         } catch (InterruptedException e) {
             throw new SQLException(e);
         }
-        return (Connection) connection;
+        return connection;
     }
 
-    public void free(PooledConnection pooledConnection) {
+    void free(PooledConnection pooledConnection) {
         usedConnections.remove(pooledConnection);
         freeConnections.offer(pooledConnection);
     }

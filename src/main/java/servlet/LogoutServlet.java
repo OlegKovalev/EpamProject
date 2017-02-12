@@ -18,11 +18,9 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
 
         DeleteCookies.eraseCookie(request, response);
-
         if (session != null) {
             LOG.info("User logged out! " +  session.getAttribute("user").toString());
             session.invalidate();

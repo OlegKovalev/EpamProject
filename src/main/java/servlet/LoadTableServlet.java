@@ -29,7 +29,7 @@ public class LoadTableServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int daysCount, selectedClassId, selectedLessonId;
-        
+
         Cookie[] cookies = request.getCookies();
         String selectedClassInJsp = request.getParameter("selectedClassId");
         String selectedLessonInJsp = request.getParameter("selectedLessonId");
@@ -76,7 +76,7 @@ public class LoadTableServlet extends HttpServlet {
         selectedClassId = Integer.parseInt(selectedClassInJsp);
         selectedLessonId = Integer.parseInt(selectedLessonInJsp);
 
-//       get the number of days by selected Class and Lesson for build columns in table
+//        get the number of days by selected Class and Lesson for build columns in table
         Days day = DaysDao.getDaysByLessonIdAndClassId(selectedLessonId, selectedClassId);
         if (day == null) {
             ShowError.printError(DAY_NOT_EXIST, "/load_drop_list", request, response);
@@ -89,7 +89,7 @@ public class LoadTableServlet extends HttpServlet {
         Lesson lesson = LessonDao.getLessonById(selectedLessonId);
 
         if (selectedStatementTypeInJsp.equals("Marks") || selectedStatementTypeInJsp.equals("Оценки")) {
-//           values for mark table
+//            values for mark table
             Set<Mark> studentMarks;
             double averageMark;
             List<MarkTable> markTableList = new ArrayList<>();
@@ -106,7 +106,6 @@ public class LoadTableServlet extends HttpServlet {
             Set<Visit> studentVisits;
             int averageVisit;
             List<VisitTable> visitTableList = new ArrayList<>();
-
 
             for (Student student : studentSet) {
                 studentVisits = VisitDao.getVisitsByLessonAndStudent(lesson, student);

@@ -12,8 +12,4 @@ public class StudentDao {
     public static Set<Student> getAllStudentsByClassId(int classId) {
         return DataAccess.getAllEntities(Student.class, SELECT_ALL + " WHERE class_id = " + classId);
     }
-
-    public static Student getStudentById(int id) {
-        return DataAccess.getEntity(Student.class, SELECT_ALL + " WHERE id = " + id);
-    }
 }

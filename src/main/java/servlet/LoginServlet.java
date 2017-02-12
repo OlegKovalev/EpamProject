@@ -51,16 +51,16 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("login");
         String password = request.getParameter("password");
 
-        //check user's input
+//        check user's input
         ErrorEnum validationResult = CheckInputValue.validateLogin(email, password);
         if (validationResult != SUCCESS) {
             ShowError.printError(validationResult, "/WEB-INF/login.jsp", request, response);
             return;
         }
 
-        //authorize the user
+//        authorize the user
         User user = UserDao.getUserByLogin(email);
-        if (user != null && checkPassword(password, user.getPass())) {
+        if (user != null && checkPassword(password, user.getPass()) && session != null) {
             session.setAttribute("user", user);
 
             //set role to be able to change statement
@@ -78,7 +78,6 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("./load_drop_list");
         } else {
             ShowError.printError(EMAIL_OR_PASSWORD_ERROR, "/WEB-INF/login.jsp", request, response);
-            return;
         }
     }
 }
