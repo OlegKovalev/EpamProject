@@ -23,7 +23,7 @@ import static service.ErrorEnum.*;
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
     
-    private static final Logger LOG = Logger.getLogger(DataAccess.class);
+    private static final Logger LOG = Logger.getLogger(RegistrationServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

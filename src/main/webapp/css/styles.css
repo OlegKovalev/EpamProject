@@ -103,11 +103,20 @@
     text-align: center;
 }
 
-
-
 /*footer*/
 .footer {
     padding-top: 19px;
     color: #777;
     border-top: 1px solid #e5e5e5;
+}
+
+/*error*/
+.error {
+    text-align: center;
+    margin: 50px;
+}
+
+.error img {
+    max-width: 300px;
+    max-height: 300px;
 }

@@ -17,7 +17,7 @@ import java.io.IOException;
 import static service.ErrorEnum.SUCCESS;
 
 @WebServlet("/change_mark")
-public class ChangeMark extends HttpServlet {
+public class ChangeMarkServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
