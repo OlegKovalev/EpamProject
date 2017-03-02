@@ -26,7 +26,7 @@ CREATE TABLE `class` (
   `prefix` enum('А','Б','В','Г','Д') CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_index` (`number`,`prefix`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `class` */
 
@@ -52,7 +52,7 @@ CREATE TABLE `days` (
   KEY `class_id` (`class_id`),
   CONSTRAINT `days_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`),
   CONSTRAINT `days_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 /*Data for the table `days` */
 
