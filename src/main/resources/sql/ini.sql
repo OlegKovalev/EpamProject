@@ -260,28 +260,6 @@ insert  into `student`(`id`,`class_id`,`fullName`) values
 (49,6,'Некрасов Демьян Артёмович'),
 (50,6,'Мясникова Агата Макаровна');
 
-/*Table structure for table `sys_config` */
-
-DROP TABLE IF EXISTS `sys_config`;
-
-CREATE TABLE `sys_config` (
-  `variable` varchar(128) NOT NULL,
-  `value` varchar(128) DEFAULT NULL,
-  `set_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `set_by` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`variable`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `sys_config` */
-
-insert  into `sys_config`(`variable`,`value`,`set_time`,`set_by`) values 
-('diagnostics.allow_i_s_tables','OFF','2016-10-03 23:36:18',NULL),
-('diagnostics.include_raw','OFF','2016-10-03 23:36:18',NULL),
-('ps_thread_trx_info.max_length','65535','2016-10-03 23:36:18',NULL),
-('statement_performance_analyzer.limit','100','2016-10-03 23:36:18',NULL),
-('statement_performance_analyzer.view',NULL,'2016-10-03 23:36:18',NULL),
-('statement_truncate_len','64','2016-10-03 23:36:18',NULL);
-
 /*Table structure for table `teacher` */
 
 DROP TABLE IF EXISTS `teacher`;
@@ -425,28 +403,6 @@ insert  into `visit`(`id`,`lesson_id`,`student_id`,`day`,`visit`) values
 (77,4,50,12,'П'),
 (78,4,45,16,'П'),
 (79,4,50,20,'О');
-
-/* Trigger structure for table `sys_config` */
-
-DELIMITER $$
-
-/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `sys_config_insert_set_user` */$$
-
-/*!50003 CREATE */ /*!50017 DEFINER = 'mysql.sys'@'localhost' */ /*!50003 TRIGGER `sys_config_insert_set_user` BEFORE INSERT ON `sys_config` FOR EACH ROW BEGIN IF @sys.ignore_sys_config_triggers != true AND NEW.set_by IS NULL THEN SET NEW.set_by = USER(); END IF; END */$$
-
-
-DELIMITER ;
-
-/* Trigger structure for table `sys_config` */
-
-DELIMITER $$
-
-/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `sys_config_update_set_user` */$$
-
-/*!50003 CREATE */ /*!50017 DEFINER = 'mysql.sys'@'localhost' */ /*!50003 TRIGGER `sys_config_update_set_user` BEFORE UPDATE ON `sys_config` FOR EACH ROW BEGIN IF @sys.ignore_sys_config_triggers != true AND NEW.set_by IS NULL THEN SET NEW.set_by = USER(); END IF; END */$$
-
-
-DELIMITER ;
 
 /* Function  structure for function  `extract_schema_from_file_name` */
 
